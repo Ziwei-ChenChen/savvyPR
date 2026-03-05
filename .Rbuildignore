@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^notebook$
+^doc$
+^Meta$
+^LICENSE\.md$
