@@ -108,7 +108,7 @@ summary(result_pr_target)
 
 The package also provides built-in plotting functions to visualize the coefficients and the risk parity optimization distributions.
 
-```{r, error=TRUE, fig.width=7, fig.height=5}
+```{r basic-plots, error=TRUE, fig.height=5, fig.width=7, fig.alt="Four-panel visualization: The top two plots show estimated regression coefficients for budget and target methods. The bottom two plots display the risk parity distribution, including optimization weights and relative risk contributions across predictors."}
 options(width = 80)
 # Plot the estimated coefficients
 plot(result_pr_budget, plot_type = "estimated_coefficients", label = TRUE)
@@ -160,7 +160,7 @@ summary(result_pr_cv3)
 
 We can also visualize the cross-validated models:
 
-```{r, error=TRUE, fig.width=7, fig.height=5}
+```{r cv-model-plots, error=TRUE, fig.height=5, fig.width=7, fig.alt="Coefficient and risk contribution plots for cross-validated PR1 and PR2 models, illustrating the impact of optimal tuning on model parameters."}
 options(width = 80)
 # Plot coefficients and risk contributions for PR1
 plot(result_pr_cv1, plot_type = "estimated_coefficients", label = TRUE)
@@ -171,17 +171,10 @@ plot(result_pr_cv2, plot_type = "estimated_coefficients", label = FALSE)
 # Cannot plot risk-contribution for PR2 since the tuning parameter val=0 is fixed.
 #plot(result_pr_cv2, plot_type = "risk_contributions", label = FALSE)
 ```
-```{r, error=TRUE, fig.width=7, fig.height=5}
-# Plot the cross-validation errors for each model
-plot(result_rr_cv)
-plot(result_pr_cv1, plot_type = "cv_errors", label = TRUE)
-plot(result_pr_cv2, plot_type = "cv_errors")
-plot(result_pr_cv3, plot_type = "cv_errors", label = FALSE)
-```
 
 We can visualize the cross-validation error curves to see exactly where the optimal minimum was found.
 
-```{r, error=TRUE, fig.width=7, fig.height=5}
+```{r cv-error-curves, error=TRUE, fig.height=5, fig.width=7, fig.alt="Cross-validation MSE curves for Ridge and PR models. Each plot shows mean squared error against the log of the tuning parameter, with vertical dashed lines marking the optimal values."}
 # Plot the cross-validation errors for each model
 plot(result_rr_cv)
 plot(result_pr_cv1, plot_type = "cv_errors", label = TRUE)
@@ -191,7 +184,7 @@ plot(result_pr_cv3, plot_type = "cv_errors", label = FALSE)
 
 Finally, we can plot the Coefficient Paths to see how the coefficients shrink or change as the tuning parameter varies. Notice that we use xvar = "val" to plot against the unified tuning parameter.
 
-```{r, error=TRUE, fig.width=7, fig.height=5}
+```{r coef-paths, error=TRUE, fig.height=5, fig.width=7, fig.alt="Series of coefficient path plots showing how individual variable estimates evolve as the regularization parameter (lambda) or parity parameter (val) changes."}
 # Plot the coefficient paths for cross-validation models
 plot(result_pr_cv1, plot_type = "cv_coefficients", xvar = "val", max_vars_per_plot = 10, label = TRUE)
 

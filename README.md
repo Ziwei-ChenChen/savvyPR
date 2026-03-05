@@ -4,9 +4,9 @@ The `savvyPR` package implements Parity Regression (PR), a novel regularization 
 
 This package is based on the theoretical foundations and algorithms discussed in:
 
-Asimit, V., Chen, Z., & Millossovich, P. (2026). [*Parity Regression Estimation*](https://openaccess.city.ac.uk).
+Asimit, V., Chen, Z., & Millossovich, P. (2026). [*Parity Regression Estimation*](https://openaccess.city.ac.uk/id/eprint/37017/).
 
-The official documentation site is available at: <https://Ziwei-ChenChen.github.io/savvyPR>
+The official documentation site is available at: <https://ziwei-chenchen.github.io/savvyPR/>
 
 # Installation Guide
 

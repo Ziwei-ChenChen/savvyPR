@@ -156,7 +156,7 @@ print(result_pr3)
 \references{
 Asimit, V., Chen, Z., & Millossovich, P. (2026).
 \emph{Prity Regression Estimation}.
-Retrieved from \url{https://openaccess.city.ac.uk}
+Retrieved from \url{https://openaccess.city.ac.uk/id/eprint/37017/}
 
 The optimization technique employed follows the algorithm described by:
 F. Spinu (2013). An Algorithm for Computing Risk Parity Weights. SSRN Preprint. doi:10.2139/ssrn.2297383
