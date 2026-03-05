@@ -23,7 +23,7 @@ Description: Implements the Savvy Parity Regression (savvyPR) methodology
     The package provides comprehensive tools for model estimation, 
     risk distribution analysis, and parameter tuning via cross-validation 
     (PR1, PR2, and PR3 model types) to optimize predictive accuracy. 
-    Methods are based on Asimit Chen and Millossovich (2026) 
+    Methods are based on Asimit, Chen, Ichim and Millossovich (2026) 
     <https://openaccess.city.ac.uk/id/eprint/35005/>.
 License: GPL (>= 3)
 URL: https://ziwei-chenchen.github.io/savvyPR/

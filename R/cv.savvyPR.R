@@ -116,7 +116,7 @@
 #' Maintainer: Ziwei Chen <ziwei.chen.3@citystgeorges.ac.uk>
 #'
 #' @references
-#' Asimit, V., Chen, Z., & Millossovich, P. (2026).
+#' Asimit, V., Chen, Z., Ichim, B., & Millossovich, P. (2026).
 #' \emph{Prity Regression Estimation}.
 #' Retrieved from \url{https://openaccess.city.ac.uk/id/eprint/37017/}
 #'
