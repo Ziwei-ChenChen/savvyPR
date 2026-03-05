@@ -41,7 +41,6 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Ziwei-ChenChen/savvyPR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -58,14 +57,14 @@
       <h1>savvyPR: Savvy Parity Regression (PR) Model Estimation</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Ziwei-ChenChen/savvyPR/blob/HEAD/vignettes/savvyPR_example.Rmd" class="external-link"><code>vignettes/savvyPR_example.Rmd</code></a></small>
+
       <div class="d-none name"><code>savvyPR_example.Rmd</code></div>
     </div>
 
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Ziwei-ChenChen/savvyPR" class="external-link">savvyPR</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://Ziwei-ChenChen.github.io/savvyPR">savvyPR</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
@@ -81,7 +80,7 @@ supporting both Budget-based and Target-based parameterizations.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Install the development version from GitHub</span></span>
 <span><span class="co"># devtools::install_github("Ziwei-ChenChen/savvyPR)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Ziwei-ChenChen/savvyPR" class="external-link">savvyPR</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://Ziwei-ChenChen.github.io/savvyPR">savvyPR</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://glmnet.stanford.edu" class="external-link">glmnet</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Loading required package: Matrix</span></span></code></pre>
@@ -304,17 +303,17 @@ the coefficients and the risk parity optimization distributions.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">80</span><span class="op">)</span></span>
 <span><span class="co"># Plot the estimated coefficients</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_budget</span>, plot_type <span class="op">=</span> <span class="st">"estimated_coefficients"</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/basic-plots-1.png" alt="Four-panel visualization: The top two plots show estimated regression coefficients for budget and target methods. The bottom two plots display the risk parity distribution, including optimization weights and relative risk contributions across predictors." width="672"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_target</span>, plot_type <span class="op">=</span> <span class="st">"estimated_coefficients"</span>, label <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-4-2.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/basic-plots-2.png" alt="Four-panel visualization: The top two plots show estimated regression coefficients for budget and target methods. The bottom two plots display the risk parity distribution, including optimization weights and relative risk contributions across predictors." width="672"></p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot the risk contributions and weights/target variables</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_budget</span>, plot_type <span class="op">=</span> <span class="st">"risk_contributions"</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-4-3.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/basic-plots-3.png" alt="Four-panel visualization: The top two plots show estimated regression coefficients for budget and target methods. The bottom two plots display the risk parity distribution, including optimization weights and relative risk contributions across predictors." width="672"></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_target</span>, plot_type <span class="op">=</span> <span class="st">"risk_contributions"</span>, label <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-4-4.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/basic-plots-4.png" alt="Four-panel visualization: The top two plots show estimated regression coefficients for budget and target methods. The bottom two plots display the risk parity distribution, including optimization weights and relative risk contributions across predictors." width="672"></p>
 </div>
 <div class="section level2">
 <h2 id="cross-validation-for-parity-regression-models">Cross-Validation for Parity Regression Models<a class="anchor" aria-label="anchor" href="#cross-validation-for-parity-regression-models"></a>
@@ -500,70 +499,57 @@ tuning values chosen by the algorithm.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">80</span><span class="op">)</span></span>
 <span><span class="co"># Plot coefficients and risk contributions for PR1</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv1</span>, plot_type <span class="op">=</span> <span class="st">"estimated_coefficients"</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/cv-model-plots-1.png" alt="Coefficient and risk contribution plots for cross-validated PR1 and PR2 models, illustrating the impact of optimal tuning on model parameters." width="672"></p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv1</span>, plot_type <span class="op">=</span> <span class="st">"risk_contributions"</span>,label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-7-2.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/cv-model-plots-2.png" alt="Coefficient and risk contribution plots for cross-validated PR1 and PR2 models, illustrating the impact of optimal tuning on model parameters." width="672"></p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot coefficients and risk contributions for PR2</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv2</span>, plot_type <span class="op">=</span> <span class="st">"estimated_coefficients"</span>, label <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-7-3.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/cv-model-plots-3.png" alt="Coefficient and risk contribution plots for cross-validated PR1 and PR2 models, illustrating the impact of optimal tuning on model parameters." width="672"></p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Cannot plot risk-contribution for PR2 since the tuning parameter val=0 is fixed.</span></span>
 <span><span class="co">#plot(result_pr_cv2, plot_type = "risk_contributions", label = FALSE)</span></span></code></pre></div>
+<p>We can visualize the cross-validation error curves to see exactly
+where the optimal minimum was found.</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot the cross-validation errors for each model</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_rr_cv</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/cv-error-curves-1.png" alt="Cross-validation MSE curves for Ridge and PR models. Each plot shows mean squared error against the log of the tuning parameter, with vertical dashed lines marking the optimal values." width="672"></p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv1</span>, plot_type <span class="op">=</span> <span class="st">"cv_errors"</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-8-2.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/cv-error-curves-2.png" alt="Cross-validation MSE curves for Ridge and PR models. Each plot shows mean squared error against the log of the tuning parameter, with vertical dashed lines marking the optimal values." width="672"></p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv2</span>, plot_type <span class="op">=</span> <span class="st">"cv_errors"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-8-3.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/cv-error-curves-3.png" alt="Cross-validation MSE curves for Ridge and PR models. Each plot shows mean squared error against the log of the tuning parameter, with vertical dashed lines marking the optimal values." width="672"></p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv3</span>, plot_type <span class="op">=</span> <span class="st">"cv_errors"</span>, label <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-8-4.png" width="672"></p>
-<p>We can visualize the cross-validation error curves to see exactly
-where the optimal minimum was found.</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Plot the cross-validation errors for each model</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_rr_cv</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv1</span>, plot_type <span class="op">=</span> <span class="st">"cv_errors"</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-9-2.png" width="672"></p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv2</span>, plot_type <span class="op">=</span> <span class="st">"cv_errors"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-9-3.png" width="672"></p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv3</span>, plot_type <span class="op">=</span> <span class="st">"cv_errors"</span>, label <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-9-4.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/cv-error-curves-4.png" alt="Cross-validation MSE curves for Ridge and PR models. Each plot shows mean squared error against the log of the tuning parameter, with vertical dashed lines marking the optimal values." width="672"></p>
 <p>Finally, we can plot the Coefficient Paths to see how the
 coefficients shrink or change as the tuning parameter varies. Notice
 that we use xvar = “val” to plot against the unified tuning
 parameter.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot the coefficient paths for cross-validation models</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv1</span>, plot_type <span class="op">=</span> <span class="st">"cv_coefficients"</span>, xvar <span class="op">=</span> <span class="st">"val"</span>, max_vars_per_plot <span class="op">=</span> <span class="fl">10</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-10-1.png" width="672"><img src="savvyPR_example_files/figure-html/unnamed-chunk-10-2.png" width="672"></p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<p><img src="savvyPR_example_files/figure-html/coef-paths-1.png" alt="Series of coefficient path plots showing how individual variable estimates evolve as the regularization parameter (lambda) or parity parameter (val) changes." width="672"><img src="savvyPR_example_files/figure-html/coef-paths-2.png" alt="Series of coefficient path plots showing how individual variable estimates evolve as the regularization parameter (lambda) or parity parameter (val) changes." width="672"></p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Show what happens when max_vars_per_plot exceeds the limit (will trigger a warning and reset to 10)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv2</span>, plot_type <span class="op">=</span> <span class="st">"cv_coefficients"</span>, xvar <span class="op">=</span> <span class="st">"norm"</span>, max_vars_per_plot <span class="op">=</span> <span class="fl">12</span>, label <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning in plotCVCoef(result_list = x, label = label, xvar = xvar,</span></span>
 <span><span class="co">## max_vars_per_plot = max_vars_per_plot, : max_vars_per_plot cannot exceed 10.</span></span>
 <span><span class="co">## Setting max_vars_per_plot to 10.</span></span></code></pre>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-10-3.png" width="672"><img src="savvyPR_example_files/figure-html/unnamed-chunk-10-4.png" width="672"></p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<p><img src="savvyPR_example_files/figure-html/coef-paths-3.png" alt="Series of coefficient path plots showing how individual variable estimates evolve as the regularization parameter (lambda) or parity parameter (val) changes." width="672"><img src="savvyPR_example_files/figure-html/coef-paths-4.png" alt="Series of coefficient path plots showing how individual variable estimates evolve as the regularization parameter (lambda) or parity parameter (val) changes." width="672"></p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># PR3 uses dual-optimization, so we can plot against lambda as well</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv3</span>, plot_type <span class="op">=</span> <span class="st">"cv_coefficients"</span>, xvar <span class="op">=</span> <span class="st">"norm"</span>, max_vars_per_plot <span class="op">=</span> <span class="fl">10</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-10-5.png" width="672"><img src="savvyPR_example_files/figure-html/unnamed-chunk-10-6.png" width="672"></p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<p><img src="savvyPR_example_files/figure-html/coef-paths-5.png" alt="Series of coefficient path plots showing how individual variable estimates evolve as the regularization parameter (lambda) or parity parameter (val) changes." width="672"><img src="savvyPR_example_files/figure-html/coef-paths-6.png" alt="Series of coefficient path plots showing how individual variable estimates evolve as the regularization parameter (lambda) or parity parameter (val) changes." width="672"></p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv3</span>, plot_type <span class="op">=</span> <span class="st">"cv_coefficients"</span>, xvar <span class="op">=</span> <span class="st">"lambda"</span>, max_vars_per_plot <span class="op">=</span> <span class="fl">10</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-10-7.png" width="672"><img src="savvyPR_example_files/figure-html/unnamed-chunk-10-8.png" width="672"></p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<p><img src="savvyPR_example_files/figure-html/coef-paths-7.png" alt="Series of coefficient path plots showing how individual variable estimates evolve as the regularization parameter (lambda) or parity parameter (val) changes." width="672"><img src="savvyPR_example_files/figure-html/coef-paths-8.png" alt="Series of coefficient path plots showing how individual variable estimates evolve as the regularization parameter (lambda) or parity parameter (val) changes." width="672"></p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv3</span>, plot_type <span class="op">=</span> <span class="st">"cv_coefficients"</span>, xvar <span class="op">=</span> <span class="st">"dev"</span>, max_vars_per_plot <span class="op">=</span> <span class="fl">10</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="savvyPR_example_files/figure-html/unnamed-chunk-10-9.png" width="672"><img src="savvyPR_example_files/figure-html/unnamed-chunk-10-10.png" width="672"></p>
+<p><img src="savvyPR_example_files/figure-html/coef-paths-9.png" alt="Series of coefficient path plots showing how individual variable estimates evolve as the regularization parameter (lambda) or parity parameter (val) changes." width="672"><img src="savvyPR_example_files/figure-html/coef-paths-10.png" alt="Series of coefficient path plots showing how individual variable estimates evolve as the regularization parameter (lambda) or parity parameter (val) changes." width="672"></p>
 </div>
 <div class="section level2">
 <h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
