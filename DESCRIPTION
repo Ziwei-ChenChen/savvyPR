@@ -24,6 +24,8 @@ Description: Implements the Savvy Parity Regression (savvyPR) methodology
     risk distribution analysis, and parameter tuning via cross-validation 
     (PR1, PR2, and PR3 model types) to optimize predictive accuracy.
 License: GPL (>= 3)
+URL: https://github.com/Ziwei-ChenChen/savvyPR, https://Ziwei-ChenChen.github.io/savvyPR
+BugReports: https://github.com/Ziwei-ChenChen/savvyPR/issues
 Encoding: UTF-8
 RoxygenNote: 7.3.2
 Depends:

@@ -1,10 +1,10 @@
 ---
-title: "Introduction to savvyPR"
+title: "savvyPR: Savvy Parity Regression (PR) Model Estimation"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to savvyPR}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{savvyPR: Savvy Parity Regression (PR) Model Estimation}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r setup, include=TRUE}
