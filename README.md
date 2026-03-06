@@ -8,7 +8,7 @@ Asimit, V., Chen, Z., Ichim, B., & Millossovich, P. (2026). [*Parity Regression 
 
 The official documentation site is available at: <https://ziwei-chenchen.github.io/savvyPR/>
 
-# Installation Guide
+## Installation Guide
 
 You can install the development version of `savvyPR` from GitHub:
 
@@ -67,6 +67,7 @@ y <- as.numeric(x %*% rep(1, p) + rnorm(n, sd = 0.5))
 
 # Fit a cross-validated PR3 model (Budget method)
 cv_fit <- cv.savvyPR(x, y, method = "budget", model_type = "PR3")
+coef(cv_fit)
 
 # Plot the results
 plot(cv_fit, plot_type = "estimated_coefficients")

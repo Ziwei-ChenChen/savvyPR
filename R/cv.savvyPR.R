@@ -136,21 +136,18 @@ cv.savvyPR <- function(x, y, method = c("budget", "target"), vals = NULL, nval =
                        foldid = FALSE, use_feature_selection = FALSE, standardize = FALSE,
                        intercept = TRUE, exclude = NULL) {
 
-  # Check and assign method safely
   if (missing(method) || is.null(method)) {
     method <- "budget"
   } else {
     method <- match.arg(method)
   }
 
-  # Safely check and assign model_type
   if (missing(model_type) || is.null(model_type)) {
     model_type <- "PR3"
   } else {
     model_type <- match.arg(model_type)
   }
 
-  # Safely check and assign measure_type
   if (missing(measure_type) || is.null(measure_type)) {
     measure_type <- "mse"
   } else {
@@ -162,13 +159,14 @@ cv.savvyPR <- function(x, y, method = c("budget", "target"), vals = NULL, nval =
   nobs <- nrow(x)
   nvars <- ncol(x)
 
-  # Check for matching number of observations
-  if (nrow(x) != length(y)) stop("The number of rows in x must match the length of y.")
+  if (nrow(x) != length(y)) {
+    stop("The number of rows in x must match the length of y.")
+  }
 
-  # Check for NA values in x or y
-  if (anyNA(x) || anyNA(y)) stop("x or y has missing values; consider using appropriate methods to impute them before analysis.")
+  if (anyNA(x) || anyNA(y)) {
+    stop("x or y has missing values; consider using appropriate methods to impute them before analysis.")
+  }
 
-  # Define defaults for vals based on the method
   if (is.null(vals)) {
     if (method == "budget") {
       vals <- c(0, seq(0.00001, 1/nvars, length.out = nval - 1))
@@ -179,24 +177,20 @@ cv.savvyPR <- function(x, y, method = c("budget", "target"), vals = NULL, nval =
     stop("Need more than one value of tuning parameter (vals) for meaningful cross-validation.")
   }
 
-  # Define defaults for lambda_vals
   if ((is.null(lambda_vals) && (model_type == "PR2" || model_type == "PR3"))) {
     lambda_vals <- c(0, 10^seq(-6, 2, length.out = nlambda - 1))
   } else if (length(lambda_vals) < 2 && (model_type == "PR2" || model_type == "PR3")) {
     stop("Need more than one value of lambda_val for meaningful cross-validation.")
   }
 
-  # Validate input for folds
   if (!is.numeric(folds) || folds < 3 || round(folds) != folds) {
     stop("Number of folds must be an integer greater than or equal to 3.")
   }
 
-  # Generate fold assignments
   fold_ids <- sample(rep(1:folds, length.out = nobs))
 
   measure_name <- getMeasureName(measure_type)
 
-  # Helper function to perform cross-validation folds
   cv_fold_process <- function(val, lambda_val, folds, fold_ids, intercept) {
     mse_k <- numeric(folds)
     coefs <- matrix(0, nvars + as.integer(intercept), folds)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/savvyPR.R
 \name{savvyPR}
 \alias{savvyPR}
-\title{Parity Regression (PR) Model Estimation}
+\title{Parity Regression Model Estimation}
 \usage{
 savvyPR(
   x,

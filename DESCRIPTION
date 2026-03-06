@@ -1,6 +1,6 @@
 Package: savvyPR
 Type: Package
-Title: Savvy Parity Regression (PR) Model Estimation
+Title: Savvy Parity Regression Model Estimation
 Version: 0.1.0
 Authors@R: 
     c(person(given = "Ziwei", family = "Chen", role = c("aut", "cre"),

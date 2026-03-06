@@ -13,6 +13,7 @@ library(ggplot2)
 ```
 
 # Introduction
+
 This vignette demonstrates how to use the `savvyPR` package for parity regression model estimation and cross-validation. The package handles multicollinearity by applying risk parity constraints, supporting both Budget-based and Target-based parameterizations.
 
 # Installation
@@ -26,6 +27,7 @@ library(glmnet)
 ```
 
 # Parity Regression Model Estimation
+
 The `savvyPR` function is used to fit a parity regression model. Here we demonstrate its usage with synthetic, highly correlated data.
 
 ```{r, fig.width=7, fig.height=5}
@@ -52,12 +54,9 @@ generate_beta <- function(p) {
   return(beta)
 }
 
-# Set seed for reproducibility
 set.seed(123)
-
-# Number of observations and variables
-n <- 1500  # Number of observations
-p <- 15  # Number of variables
+n <- 1500  
+p <- 15  
 rho <- -0.5  
 
 corr_matrix <- create_corr_matrix(rho, p)
@@ -120,6 +119,7 @@ plot(result_pr_target, plot_type = "risk_contributions", label = FALSE)
 ```
 
 # Cross-Validation for Parity Regression Models
+
 The `cv.savvyPR` function performs cross-validation to select optimal parameters. It handles both the "budget" sequence and the "target" sequence automatically.
 
 ```{r, fig.width=7, fig.height=5}
@@ -198,6 +198,5 @@ plot(result_pr_cv3, plot_type = "cv_coefficients", xvar = "dev", max_vars_per_pl
 ```
 
 # Conclusion
+
 This vignette has provided an overview of the main functionalities of the savvyPR package, covering both the Budget-based and Target-based risk parity constraints. For more details, refer to the function documentation.
-
-

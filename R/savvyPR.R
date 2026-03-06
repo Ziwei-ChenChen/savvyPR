@@ -1,6 +1,7 @@
 #' Parity Regression Model Estimation
 #'
-#' @title Parity Regression (PR) Model Estimation
+#' @title Parity Regression Model Estimation
+#'
 #' @description Implements the Parity Regression (PR) methodology for multiple linear regression.
 #' Instead of minimizing the aggregate prediction error in the dependent variable, PR distributes
 #' the total prediction error evenly across all parameters. This approach ensures stability in the
@@ -125,19 +126,16 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
   x <- as.matrix(x)
   y <- as.vector(y)
 
-  # Check for matching number of observations
   if (nrow(x) != length(y)) {
     stop("The number of rows in x must match the length of y.")
   }
 
-  # Check for NA values in x or y
   if (anyNA(x) || anyNA(y)) {
     stop("x or y has missing values; consider using appropriate methods to impute them before analysis.")
   }
 
   model <- data.frame(y, x)
 
-  # Handle exclusion of specified columns
   if (!is.null(exclude) && length(exclude) > 0) {
     if (any(exclude > ncol(x))) {
       stop("Exclusion indices are out of bounds.")
@@ -150,19 +148,16 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
     x <- x[, -1, drop = FALSE]
   }
 
-  # Check for columns with very few unique values
   low_unique_threshold <- 0.05 * nrow(x)
   low_unique_columns <- apply(x, 2, function(col) length(unique(col)) < low_unique_threshold)
   if (any(low_unique_columns)) {
     stop("Found columns with less than 5% unique values, which are not suitable for parity regression.")
   }
 
-  # Assign default column names if not present
   if (is.null(colnames(x))) {
     colnames(x) <- paste("V", seq_along(x[1, ]), sep = "")
   }
 
-  # Define the number of observations and variables
   nobs <- nrow(x)
   nvars <- ncol(x)
   if (nvars >= nobs) {
@@ -177,7 +172,6 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
       warning("val cannot be negative; setting val to 0.")
       val <- 0
     }
-    # If using budget method, apply the upper bound cap
     if (method == "budget" && val > 1 / nvars) {
       warning(sprintf("For 'budget' method, val exceeds the maximum allowed value of 1/%d; setting val to 1/%d.", nvars, nvars))
       val <- 1 / nvars
@@ -186,7 +180,6 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
 
   is_zero_param <- (val == 0)
 
-  # Validate lambda_val
   if (!is.null(lambda_val)) {
     if (!is.numeric(lambda_val) || length(lambda_val) != 1) {
       stop("lambda_val must be a single numeric value.")
@@ -197,7 +190,6 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
     }
   }
 
-  # Exist feature selection
   if (use_feature_selection) {
     cv_model <- cv.glmnet(x, y, alpha = 1)
     lambda_min <- cv_model$lambda.min
@@ -229,10 +221,8 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
     # Case 1: intercept = TRUE
     if (intercept) {
       if (standardize) {
-        # Standardize x and center y
         x <- sweep(sweep(x, 2, mu_x, "-"), 2, sd_x, "/")
       } else {
-        # Center x and y
         x <- sweep(x, 2, mu_x, "-")
       }
       mu_y <- mean(y)
@@ -241,14 +231,11 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
       # Case 2: intercept = FALSE
     } else {
       if (standardize) {
-        # Standardize x and y (without centering y)
         x <- sweep(sweep(x, 2, mu_x, "-"), 2, sd_x, "/")
       }
     }
 
-    # Check the rank of x to determine if OLS is suitable
     if (Matrix::rankMatrix(x)[1] < nvars) {
-      # If x is not full rank, use Ridge regression as a fallback
       if (is.null(lambda_val)) {
         cv_model <- cv.glmnet(x, y, alpha = 0, intercept = intercept)
         lambda_min <- cv_model$lambda.min
@@ -269,7 +256,7 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
       cov_matrix <- ((nobs - 1) / nobs) * cov_matrix + diag(c(rep(lambda_val, nvars), 0))
     }
 
-    # --- Risk parity portfolio calculation based on method ---
+    # Risk parity portfolio calculation based on method
     if (method == "budget") {
       b_val <- c(rep(val, nvars), 1 - val * nvars)
       b_val[length(b_val)] <- b_val[length(b_val)] + (1 - sum(b_val))
@@ -282,8 +269,6 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
     }
 
     orp_coef <- (c_vec * orp_vars[-(nvars + 1)]) / orp_vars[nvars + 1]
-
-    # Adjust coefficients based on standardization
     pr_coef <- if (standardize) orp_coef / sd_x else orp_coef
 
     if (intercept) {
