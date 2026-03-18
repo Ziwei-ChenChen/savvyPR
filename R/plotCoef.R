@@ -1,7 +1,6 @@
 utils::globalVariables(c("Coefficient", "Value"))
 
 #' @keywords internal
-# Function to plot the coefficients with optional labels
 plotCoef <- function(coefficients, intercept = TRUE, label = TRUE, ...) {
   if (is.null(coefficients)) {
     warning("Coefficients are missing in the result.")

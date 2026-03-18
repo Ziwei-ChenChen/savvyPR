@@ -46,7 +46,7 @@
 #' @return A \code{ggplot} object representing the requested plot.
 #'
 #' @examples
-#' # Example usage for savvyPR with Correlated Data:
+#' # Example usage for `savvyPR` with Correlated Data:
 #' set.seed(123)
 #' n <- 100
 #' p <- 12

@@ -93,7 +93,7 @@ This function offers four types of plots, depending on the value of \code{plot_t
 }
 \examples{
 \donttest{
-# Example usage for cv.savvyPR with Correlated Data:
+# Example usage for `cv.savvyPR` with Correlated Data:
 set.seed(123)
 n <- 100
 p <- 10

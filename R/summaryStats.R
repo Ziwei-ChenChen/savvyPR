@@ -1,6 +1,5 @@
 
 #' @keywords internal
-#'
 format_p_values <- function(p_values, digits = 4) {
   formatted_p_values <- ifelse(p_values < 10^(-digits),
                                sprintf(paste0("%.", digits, "e"), p_values),

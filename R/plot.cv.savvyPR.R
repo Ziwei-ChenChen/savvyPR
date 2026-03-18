@@ -69,7 +69,7 @@
 #'
 #' @examples
 #' \donttest{
-#' # Example usage for cv.savvyPR with Correlated Data:
+#' # Example usage for `cv.savvyPR` with Correlated Data:
 #' set.seed(123)
 #' n <- 100
 #' p <- 10

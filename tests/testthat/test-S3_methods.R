@@ -2,8 +2,8 @@ library(testthat)
 library(savvyPR)
 
 set.seed(123)
-n <- 100
-p <- 10
+n <- 50
+p <- 5
 x <- matrix(rnorm(n * p), n, p)
 y <- rnorm(n)
 model <- savvyPR(x, y, intercept = TRUE)
@@ -15,7 +15,7 @@ test_that("predict method works correctly for 'response' type", {
 
   expect_type(predictions, "double")
   expect_length(predictions, 5)
-  expect_error(predict(model, newx = x[, 1:8], type = "response"),
+  expect_error(predict(model, newx = x[, 1:3], type = "response"),
                "The number of variables in newx must match the number of coefficients in the model.")
 })
 
@@ -36,7 +36,7 @@ test_that("predict method works correctly for 'response' type", {
 
   expect_type(predictions, "double")
   expect_length(predictions, 5)
-  expect_error(predict(cv_model, newx = x[, 1:8], type = "response"),
+  expect_error(predict(cv_model, newx = x[, 1:3], type = "response"),
                "The number of variables in newx must match the number of coefficients in the model.")
 })
 

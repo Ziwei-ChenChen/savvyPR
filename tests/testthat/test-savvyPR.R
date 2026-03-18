@@ -2,8 +2,8 @@ library(testthat)
 library(savvyPR)
 
 set.seed(123)
-n <- 100
-p <- 10
+n <- 50
+p <- 5
 x <- matrix(rnorm(n * p), n, p)
 beta <- matrix(rnorm(p + 1), p + 1, 1)
 y <- cbind(1, x) %*% beta + rnorm(n, sd = 0.5)
@@ -163,7 +163,7 @@ test_that("savvyPR removes uniform first column if it's all ones", {
 
 test_that("savvyPR checks for columns with low unique values correctly", {
   x_low_unique <- x
-  x_low_unique[, 2] <- rep(1:3, length.out = n)  # Making the second column have low unique values
+  x_low_unique[, 2] <- rep(1:2, length.out = n)
   expect_error(savvyPR(x_low_unique, y, val = 0.05), "Found columns with less than 5% unique values, which are not suitable for parity regression.")
 })
 

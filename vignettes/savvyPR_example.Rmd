@@ -1,9 +1,9 @@
 ---
-title: "savvyPR: Savvy Parity Regression (PR) Model Estimation"
+title: "Savvy Parity Regression Model Estimation with 'savvyPR'"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEncoding{UTF-8}
-  %\VignetteIndexEntry{savvyPR: Savvy Parity Regression (PR) Model Estimation}
+  %\VignetteIndexEntry{Savvy Parity Regression Model Estimation with 'savvyPR'}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
@@ -31,7 +31,6 @@ library(glmnet)
 The `savvyPR` function is used to fit a parity regression model. Here we demonstrate its usage with synthetic, highly correlated data.
 
 ```{r, fig.width=7, fig.height=5}
-options(width = 80)
 library(MASS)
 library(glmnet)
 
@@ -100,7 +99,6 @@ print(paste("PR Target L2:", pr_target_L2))
 You can use the `summary` function to get detailed statistics for your models:
 
 ```{r, fig.width=7, fig.height=5}
-options(width = 80)
 summary(result_pr_budget)
 summary(result_pr_target)
 ```
@@ -108,7 +106,6 @@ summary(result_pr_target)
 The package also provides built-in plotting functions to visualize the coefficients and the risk parity optimization distributions.
 
 ```{r basic-plots, error=TRUE, fig.height=5, fig.width=7, fig.alt="Four-panel visualization: The top two plots show estimated regression coefficients for budget and target methods. The bottom two plots display the risk parity distribution, including optimization weights and relative risk contributions across predictors."}
-options(width = 80)
 # Plot the estimated coefficients
 plot(result_pr_budget, plot_type = "estimated_coefficients", label = TRUE)
 plot(result_pr_target, plot_type = "estimated_coefficients", label = FALSE)
@@ -123,8 +120,6 @@ plot(result_pr_target, plot_type = "risk_contributions", label = FALSE)
 The `cv.savvyPR` function performs cross-validation to select optimal parameters. It handles both the "budget" sequence and the "target" sequence automatically.
 
 ```{r, fig.width=7, fig.height=5}
-options(width = 80)
-
 # Cross-validation with Ridge
 result_rr_cv <- cv.glmnet(x, y, alpha = 0, folds = 5)
 fit_rr1 <- glmnet(x, y, alpha = 0, lambda = result_rr_cv$lambda.min)
@@ -152,7 +147,6 @@ print(paste("PR3 CV (Budget) L2:", sqrt(sum((beta - coef_pr_cv3)^2))))
 We can summarize the cross-validation results to see the optimal tuning values chosen by the algorithm.
 
 ```{r, fig.width=7, fig.height=5}
-options(width = 80)
 summary(result_pr_cv1)
 summary(result_pr_cv2)
 summary(result_pr_cv3)
@@ -161,7 +155,6 @@ summary(result_pr_cv3)
 We can also visualize the cross-validated models:
 
 ```{r cv-model-plots, error=TRUE, fig.height=5, fig.width=7, fig.alt="Coefficient and risk contribution plots for cross-validated PR1 and PR2 models, illustrating the impact of optimal tuning on model parameters."}
-options(width = 80)
 # Plot coefficients and risk contributions for PR1
 plot(result_pr_cv1, plot_type = "estimated_coefficients", label = TRUE)
 plot(result_pr_cv1, plot_type = "risk_contributions",label = TRUE)
@@ -199,4 +192,4 @@ plot(result_pr_cv3, plot_type = "cv_coefficients", xvar = "dev", max_vars_per_pl
 
 # Conclusion
 
-This vignette has provided an overview of the main functionalities of the savvyPR package, covering both the Budget-based and Target-based risk parity constraints. For more details, refer to the function documentation.
+This vignette has provided an overview of the main functionalities of the `savvyPR` package, covering both the Budget-based and Target-based risk parity constraints. For more details, refer to the function documentation.

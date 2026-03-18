@@ -11,8 +11,8 @@ test_that("getMeasureName returns correct measure names", {
 })
 
 set.seed(123)
-n <- 100
-p <- 10
+n <- 50
+p <- 5
 x <- matrix(rnorm(n * p), n, p)
 beta <- matrix(rnorm(p + 1), p + 1, 1)
 y <- cbind(1, x) %*% beta + rnorm(n, sd = 0.5)

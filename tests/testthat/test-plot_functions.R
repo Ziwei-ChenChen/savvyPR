@@ -3,8 +3,8 @@ library(savvyPR)
 library(ggplot2)
 
 set.seed(123)
-n <- 100
-p <- 10
+n <- 50
+p <- 5
 base_var <- rnorm(n)
 x <- matrix(rnorm(n * p, sd = 0.1), n, p) + base_var
 beta <- matrix(rnorm(p + 1), p + 1, 1)

@@ -65,7 +65,7 @@ This function offers two types of plots, depending on the value of \code{plot_ty
 }
 }
 \examples{
-# Example usage for savvyPR with Correlated Data:
+# Example usage for `savvyPR` with Correlated Data:
 set.seed(123)
 n <- 100
 p <- 12

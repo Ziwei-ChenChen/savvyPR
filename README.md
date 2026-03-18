@@ -1,4 +1,4 @@
-# savvyPR: Parity Regression Model for Linear Estimation
+# `savvyPR`: Parity Regression Model for Linear Estimation
 
 The `savvyPR` package implements Parity Regression (PR), a novel regularization framework designed to distribute prediction error equilibrium across model parameters. This methodology is particularly effective for high-dimensional data characterized by substantial noise and high multicollinearity, such as financial time series with structural changes or evolving trends.
 
@@ -76,11 +76,11 @@ plot(cv_fit, plot_type = "risk_contributions")
 
 ## Authors
 
--   Ziwei Chen – [ziwei.chen.3\@citystgeorges.ac.uk](ziwei.chen.3@citystgeorges.ac.uk)
+-   Ziwei Chen – [ziwei.chen.3\@citystgeorges.ac.uk](mailto:ziwei.chen.3@citystgeorges.ac.uk)
 
--   Vali Asimit – [asimit\@citystgeorges.ac.uk](asimit@citystgeorges.ac.uk)
+-   Vali Asimit – [asimit\@citystgeorges.ac.uk](mailto:asimit@citystgeorges.ac.uk)
 
--   Pietro Millossovich – [Pietro.Millossovich.1\@citystgeorges.ac.uk](Pietro.Millossovich.1@citystgeorges.ac.uk)
+-   Pietro Millossovich – [Pietro.Millossovich.1\@citystgeorges.ac.uk](mailto:Pietro.Millossovich.1@citystgeorges.ac.uk)
 
 ## License
 

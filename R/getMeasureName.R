@@ -7,7 +7,6 @@ measure_descriptions <- list(
 )
 
 #' @keywords internal
-# Function to return the full name of the measure
 getMeasureName <- function(measure_type) {
   if (measure_type == "default") {
     measure_type <- "mse"
