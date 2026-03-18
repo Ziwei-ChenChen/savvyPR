@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>savvyPR: Savvy Parity Regression (PR) Model Estimation • savvyPR</title>
+<title>Savvy Parity Regression Model Estimation with 'savvyPR' • savvyPR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.2.1/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.2.1/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="savvyPR: Savvy Parity Regression (PR) Model Estimation">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Savvy Parity Regression Model Estimation with 'savvyPR'">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -33,7 +33,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/savvyPR_example.html">savvyPR: Savvy Parity Regression (PR) Model Estimation</a></li>
+<li><a class="dropdown-item" href="../articles/savvyPR_example.html">Savvy Parity Regression Model Estimation with 'savvyPR'</a></li>
   </ul>
 </li>
       </ul>
@@ -55,7 +55,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>savvyPR: Savvy Parity Regression (PR) Model Estimation</h1>
+      <h1>Savvy Parity Regression Model Estimation with 'savvyPR'</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/ziwei-chenchen/savvyPR/blob/HEAD/vignettes/savvyPR_example.Rmd" class="external-link"><code>vignettes/savvyPR_example.Rmd</code></a></small>
@@ -94,8 +94,7 @@ supporting both Budget-based and Target-based parameterizations.</p>
 model. Here we demonstrate its usage with synthetic, highly correlated
 data.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">80</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://glmnet.stanford.edu" class="external-link">glmnet</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Function to create a correlation matrix for X</span></span>
@@ -215,8 +214,7 @@ data.</p>
 <p>You can use the <code>summary</code> function to get detailed
 statistics for your models:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">80</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">result_pr_budget</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">result_pr_budget</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Summary of Parity Model</span></span>
 <span><span class="co">## ===================================================================</span></span>
 <span><span class="co">## </span></span>
@@ -298,8 +296,7 @@ statistics for your models:</p>
 <p>The package also provides built-in plotting functions to visualize
 the coefficients and the risk parity optimization distributions.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">80</span><span class="op">)</span></span>
-<span><span class="co"># Plot the estimated coefficients</span></span>
+<code class="sourceCode R"><span><span class="co"># Plot the estimated coefficients</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_budget</span>, plot_type <span class="op">=</span> <span class="st">"estimated_coefficients"</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="savvyPR_example_files/figure-html/basic-plots-1.png" alt="Four-panel visualization: The top two plots show estimated regression coefficients for budget and target methods. The bottom two plots display the risk parity distribution, including optimization weights and relative risk contributions across predictors." width="672"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
@@ -320,9 +317,7 @@ the coefficients and the risk parity optimization distributions.</p>
 select optimal parameters. It handles both the “budget” sequence and the
 “target” sequence automatically.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">80</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Cross-validation with Ridge</span></span>
+<code class="sourceCode R"><span><span class="co"># Cross-validation with Ridge</span></span>
 <span><span class="va">result_rr_cv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://glmnet.stanford.edu/reference/cv.glmnet.html" class="external-link">cv.glmnet</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, alpha <span class="op">=</span> <span class="fl">0</span>, folds <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">fit_rr1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://glmnet.stanford.edu/reference/glmnet.html" class="external-link">glmnet</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, alpha <span class="op">=</span> <span class="fl">0</span>, lambda <span class="op">=</span> <span class="va">result_rr_cv</span><span class="op">$</span><span class="va">lambda.min</span><span class="op">)</span></span>
 <span><span class="va">coef_rr_cv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">fit_rr1</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
@@ -354,8 +349,7 @@ select optimal parameters. It handles both the “budget” sequence and the
 <p>We can summarize the cross-validation results to see the optimal
 tuning values chosen by the algorithm.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">80</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">result_pr_cv1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">result_pr_cv1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Summary of Cross-Validated Parity Model</span></span>
 <span><span class="co">## ===================================================================</span></span>
 <span><span class="co">## </span></span>
@@ -494,8 +488,7 @@ tuning values chosen by the algorithm.</p>
 <span><span class="co">## Optimal Lambda: 0.03728</span></span></code></pre>
 <p>We can also visualize the cross-validated models:</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">80</span><span class="op">)</span></span>
-<span><span class="co"># Plot coefficients and risk contributions for PR1</span></span>
+<code class="sourceCode R"><span><span class="co"># Plot coefficients and risk contributions for PR1</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">result_pr_cv1</span>, plot_type <span class="op">=</span> <span class="st">"estimated_coefficients"</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="savvyPR_example_files/figure-html/cv-model-plots-1.png" alt="Coefficient and risk contribution plots for cross-validated PR1 and PR2 models, illustrating the impact of optimal tuning on model parameters." width="672"></p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
@@ -553,9 +546,9 @@ parameter.</p>
 <h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
 </h2>
 <p>This vignette has provided an overview of the main functionalities of
-the savvyPR package, covering both the Budget-based and Target-based
-risk parity constraints. For more details, refer to the function
-documentation.</p>
+the <code>savvyPR</code> package, covering both the Budget-based and
+Target-based risk parity constraints. For more details, refer to the
+function documentation.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
