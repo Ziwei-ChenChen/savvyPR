@@ -27,7 +27,8 @@ savvyPR(
 If \code{method = "target"}, this represents \code{t} (a target risk parameter \code{> 0}).}
 
 \item{lambda_val}{Optional; a numeric value specifying the regularization strength.
-If \code{NULL}, \code{lambda} is determined via cross-validation.}
+If \code{NULL}, \code{lambda} is determined via cross-validation.
+\strong{Note:} In high-dimensional settings (\eqn{p \ge n}), this value must be strictly greater than 0 to prevent the loss function from reaching zero.}
 
 \item{use_feature_selection}{Logical; if \code{TRUE}, applies Lasso to perform feature selection before model estimation. Defaults to \code{FALSE}.}
 
@@ -74,7 +75,7 @@ The function can handle different practical scenarios:
 \itemize{
 \item While the PR theorem is not specifically designed for variable selection, the package makes this available as an optional preprocessing step.
  If \code{use_feature_selection} is \code{TRUE}, Lasso regression is performed to select features by zeroing out non-contributive predictors before applying the PR model.
-\item It checks the matrix rank of predictors and applies Ridge regression as a fallback to ordinary least squares if the matrix is not full rank, ensuring computational stability.
+\item It fully supports high-dimensional (\eqn{p \ge n}) and rank-deficient datasets. In these scenarios, the function applies Ridge regression as a fallback to ordinary least squares to establish the initial parameter signs (the search cone). A strictly positive \code{lambda_val} is enforced to ensure computational stability and maintain the validity of the logarithmic barrier constraints.
 }
 
 For the \strong{budget} method, the PR methodology optimizes an objective function that includes a variance term and a penalization term:
@@ -125,7 +126,7 @@ print(result_exclude$coefficients)
 }
 \references{
 Asimit, V., Chen, Z., Ichim, B., & Millossovich, P. (2026).
-\emph{Prity Regression Estimation}.
+\emph{Parity Regression Estimation}.
 Retrieved from \url{https://openaccess.city.ac.uk/id/eprint/37017/}
 
 The optimization technique employed follows the algorithm described by:

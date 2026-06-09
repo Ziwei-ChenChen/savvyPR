@@ -12,9 +12,10 @@
 #' @param y A numeric vector of the response variable, should have the same number of observations as \code{x}. Must not contain \code{NA} values.
 #' @param method Character string specifying the parameterization method to use: \code{"budget"} (default) or \code{"target"}.
 #' @param val Numeric tuning parameter. If \code{method = "budget"}, this represents \code{c} (a value between \code{0} and \code{1/p}).
-#'            If \code{method = "target"}, this represents \code{t} (a target risk parameter \code{> 0}).
+#'             If \code{method = "target"}, this represents \code{t} (a target risk parameter \code{> 0}).
 #' @param lambda_val Optional; a numeric value specifying the regularization strength.
 #'                   If \code{NULL}, \code{lambda} is determined via cross-validation.
+#'                   \strong{Note:} In high-dimensional settings (\eqn{p \ge n}), this value must be strictly greater than 0 to prevent the loss function from reaching zero.
 #' @param use_feature_selection Logical; if \code{TRUE}, applies Lasso to perform feature selection before model estimation. Defaults to \code{FALSE}.
 #' @param standardize Logical; if \code{TRUE}, scale and center predictor variables before fitting the model. Defaults to \code{TRUE}.
 #' @param intercept Logical; if \code{TRUE}, includes an intercept in the model, otherwise, the model will not estimate an intercept term. Defaults to \code{TRUE}.
@@ -36,7 +37,7 @@
 #' \itemize{
 #' \item While the PR theorem is not specifically designed for variable selection, the package makes this available as an optional preprocessing step.
 #'  If \code{use_feature_selection} is \code{TRUE}, Lasso regression is performed to select features by zeroing out non-contributive predictors before applying the PR model.
-#' \item It checks the matrix rank of predictors and applies Ridge regression as a fallback to ordinary least squares if the matrix is not full rank, ensuring computational stability.
+#' \item It fully supports high-dimensional (\eqn{p \ge n}) and rank-deficient datasets. In these scenarios, the function applies Ridge regression as a fallback to ordinary least squares to establish the initial parameter signs (the search cone). A strictly positive \code{lambda_val} is enforced to ensure computational stability and maintain the validity of the logarithmic barrier constraints.
 #' }
 #'
 #' For the \strong{budget} method, the PR methodology optimizes an objective function that includes a variance term and a penalization term:
@@ -99,7 +100,7 @@
 #'
 #' @references
 #' Asimit, V., Chen, Z., Ichim, B., & Millossovich, P. (2026).
-#' \emph{Prity Regression Estimation}.
+#' \emph{Parity Regression Estimation}.
 #' Retrieved from \url{https://openaccess.city.ac.uk/id/eprint/37017/}
 #'
 #' The optimization technique employed follows the algorithm described by:
@@ -160,8 +161,11 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
 
   nobs <- nrow(x)
   nvars <- ncol(x)
+
   if (nvars >= nobs) {
-    stop("The number of features in x must be less than the number of observations to avoid rank deficiency issues.")
+    if (!is.null(lambda_val) && lambda_val == 0) {
+      stop("In high-dimensional settings (p >= n), lambda_val must be strictly greater than 0. Please provide a positive lambda_val or set it to NULL for cross-validation.")
+    }
   }
 
   if (is.null(val)) {
@@ -218,7 +222,6 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
     mu_x <- colMeans(x)
     sd_x <- apply(x, 2, function(x) sqrt((sd(x)^2) * (length(x) - 1) / length(x)))
 
-    # Case 1: intercept = TRUE
     if (intercept) {
       if (standardize) {
         x <- sweep(sweep(x, 2, mu_x, "-"), 2, sd_x, "/")
@@ -227,20 +230,21 @@ savvyPR <- function(x, y, method = c("budget", "target"), val = NULL,
       }
       mu_y <- mean(y)
       y <- y - mu_y
-
-      # Case 2: intercept = FALSE
     } else {
       if (standardize) {
         x <- sweep(sweep(x, 2, mu_x, "-"), 2, sd_x, "/")
       }
     }
 
-    if (Matrix::rankMatrix(x)[1] < nvars) {
+    if (nvars >= nobs || Matrix::rankMatrix(x)[1] < nvars) {
       if (is.null(lambda_val)) {
         cv_model <- cv.glmnet(x, y, alpha = 0, intercept = intercept)
-        lambda_min <- cv_model$lambda.min
+        lambda_val <- cv_model$lambda.min
+        if (lambda_val == 0 && nvars >= nobs) {
+          lambda_val <- 1e-4
+        }
       }
-      fit <- glmnet(x, y, alpha = 0, lambda = lambda_min, intercept = intercept)
+      fit <- glmnet(x, y, alpha = 0, lambda = lambda_val, intercept = intercept)
       lm_coef <- as.vector(coef(fit))[-1]
     } else {
       # Full rank, apply OLS

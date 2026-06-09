@@ -1,6 +1,5 @@
 library(testthat)
 library(savvyPR)
-library(ggplot2)
 
 set.seed(123)
 n <- 50

@@ -92,23 +92,23 @@ on the model type specified. Each model type handles the parameters differently:
 
 \describe{
   \item{\strong{PR1}}{Performs cross-validation only over the \code{val} sequence while
-  fixing \eqn{\lambda=0}. This model type is primarily used when the focus is on
-  understanding how different levels of risk parity constraints impact the
-  model performance purely based on the parity mechanism without the influence
-  of ridge \eqn{\lambda} shrinkage.}
+  fixing \eqn{\lambda=0} (Standard OLS baseline). \strong{Note:} In high-dimensional settings (\eqn{p \ge n}),
+  an OLS baseline is invalid. In this scenario, PR1 automatically enforces a minimal Ridge penalty (\eqn{\lambda=1e-4})
+  to maintain mathematical stability while still focusing purely on the parity mechanism.}
 
   \item{\strong{PR2}}{Uses a fixed \eqn{\lambda} value determined by performing a ridge
   regression (\code{lambda} optimization) using \code{\link[glmnet:cv.glmnet]{cv.glmnet}}
   on the dataset. It then performs cross-validation over the \code{val} sequence
   while using this optimized \eqn{\lambda} value. This approach is useful when
   one wishes to maintain a stable amount of standard shrinkage while exploring
-  the impact of varying levels of the proportional contribution constraint.}
+  the impact of varying levels of the proportional contribution constraint.
+  Ensures \eqn{\lambda > 0} if \eqn{p \ge n}.}
 
   \item{\strong{PR3}}{First, determines an optimal \code{val} using the same method as \code{PR1}.
   Then, keeping this \code{val} fixed, it conducts a cross-validation over all
   possible \eqn{\lambda} values. This dual-stage optimization can be particularly
   effective when the initial parity regularization needs further refinement
-  via \eqn{\lambda} adjustment.}
+  via \eqn{\lambda} adjustment. Automatically filters out \eqn{\lambda=0} in high-dimensional datasets.}
 }
 
 The function supports several types of loss metrics for assessing model performance:
@@ -133,7 +133,7 @@ select the measure that best reflects the requirements of their specific analyti
 \donttest{
 # Generate synthetic data
 set.seed(123)
-n <- 100 # Number of observations
+n <- 10 # Number of observations
 p <- 12  # Number of variables
 x <- matrix(rnorm(n * p), n, p)
 beta <- matrix(rnorm(p), p, 1)
@@ -155,7 +155,7 @@ print(result_pr3)
 }
 \references{
 Asimit, V., Chen, Z., Ichim, B., & Millossovich, P. (2026).
-\emph{Prity Regression Estimation}.
+\emph{Parity Regression Estimation}.
 Retrieved from \url{https://openaccess.city.ac.uk/id/eprint/37017/}
 
 The optimization technique employed follows the algorithm described by:

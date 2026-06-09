@@ -1,6 +1,7 @@
 library(testthat)
 library(savvyPR)
 
+# Part 1: Standard Low-Dimensional Tests (p < n)
 set.seed(123)
 n <- 50
 p <- 5
@@ -137,7 +138,6 @@ test_that("savvyPR handles too large val correctly for budget method", {
 })
 
 test_that("savvyPR works correctly for target method without warnings on large vals", {
-  # Target method does not have a 1/p ceiling
   expect_silent(result <- savvyPR(x, y, method = "target", val = 2 / p))
   expect_true(inherits(result, "savvyPR"))
   expect_true("orp_fit" %in% names(result))
@@ -167,17 +167,45 @@ test_that("savvyPR checks for columns with low unique values correctly", {
   expect_error(savvyPR(x_low_unique, y, val = 0.05), "Found columns with less than 5% unique values, which are not suitable for parity regression.")
 })
 
-test_that("savvyPR handles rank deficiency correctly", {
-  x_deficient <- matrix(rnorm(n * (n + 1)), n, n + 1)
-  expect_error(savvyPR(x_deficient, y, val = 0.05), "The number of features in x must be less than the number of observations to avoid rank deficiency issues.")
-})
-
 test_that("savvyPR uses Ridge regression for rank-deficient matrices", {
   x_rank_deficient <- x
   x_rank_deficient[, 2] <- x_rank_deficient[, 1]  # Making columns 1 and 2 identical
 
   result <- savvyPR(x_rank_deficient, y, val = 0.05)
   expect_true(inherits(result, "savvyPR"))
+  expect_true("coefficients" %in% names(result))
+  expect_true("orp_fit" %in% names(result))
+})
+
+
+# Part 2: High-Dimensional Tests (p >= n)
+set.seed(456)
+n_high <- 40
+p_high <- 50  # p > n
+
+x_high <- matrix(rnorm(n_high * p_high), n_high, p_high)
+beta_high <- matrix(rnorm(p_high), p_high, 1)
+y_high <- x_high %*% beta_high + rnorm(n_high, sd = 0.5)
+
+test_that("savvyPR handles high-dimensional data automatically when lambda_val is NULL", {
+  result <- savvyPR(x_high, y_high, val = 0.01)
+
+  expect_true(inherits(result, "savvyPR"))
+  expect_true(result$lambda > 0)
+})
+
+test_that("savvyPR explicitly throws an error for high-dimensional data if lambda_val = 0", {
+  expect_error(
+    savvyPR(x_high, y_high, val = 0.01, lambda_val = 0),
+    "lambda_val must be strictly greater than 0"
+  )
+})
+
+test_that("savvyPR works successfully for high-dimensional data given a valid positive lambda", {
+  result <- savvyPR(x_high, y_high, val = 0.01, lambda_val = 0.1)
+
+  expect_true(inherits(result, "savvyPR"))
+  expect_equal(result$lambda, 0.1)
   expect_true("coefficients" %in% names(result))
   expect_true("orp_fit" %in% names(result))
 })
